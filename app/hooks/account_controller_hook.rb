@@ -1,4 +1,4 @@
-module OutOfBandAuth
+module AccountControllerHook
   class AccountControllerHooks < Redmine::Hook::ViewListener
     def controller_account_success_authentication_after(context = {})
       user, request = context.values_at(:user, :request)

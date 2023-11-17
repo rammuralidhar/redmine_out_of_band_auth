@@ -6,7 +6,7 @@ module OutOfBandAuth
   end
 end
 
-Rails.configuration.to_prepare do
+RedmineApp::Application.config.after_initialize do
   # Load patches for Redmine
   Dir[OutOfBandAuth.root.join('app/patches/**/*_patch.rb')].each {|f| require_dependency f }
 end
