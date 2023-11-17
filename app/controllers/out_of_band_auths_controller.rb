@@ -2,8 +2,7 @@ class OutOfBandAuthsController < ApplicationController
   unloadable
   # self.main_menu = false
   before_action :require_login
-
-  skip_before_action :check_out_of_band_auth
+  skip_before_action :require_login, :only => [:check_out_of_band_auth]
 
   def login
     if session[:oob].present?
