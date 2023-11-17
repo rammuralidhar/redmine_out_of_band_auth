@@ -1,6 +1,6 @@
 require_dependency 'user_preference'
 
-module OutOfBandAuth
+module Models
   module UserPreferencePatch
     extend ActiveSupport::Concern
     unloadable
@@ -18,6 +18,6 @@ module OutOfBandAuth
   end
 end
 
-OutOfBandAuth::UserPreferencePatch.tap do |mod|
+Models::UserPreferencePatch.tap do |mod|
   UserPreference.send :include, mod unless UserPreference.include?(mod)
 end

@@ -1,6 +1,6 @@
 require_dependency 'application_controller'
 
-module OutOfBandAuth
+module  Controllers
   module ApplicationControllerPatch
     extend ActiveSupport::Concern
     unloadable
@@ -30,6 +30,6 @@ module OutOfBandAuth
   end
 end
 
-OutOfBandAuth::ApplicationControllerPatch.tap do |mod|
+Controllers::ApplicationControllerPatch.tap do |mod|
   ApplicationController.send :include, mod unless ApplicationController.include?(mod)
 end

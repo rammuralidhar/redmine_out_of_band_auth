@@ -1,6 +1,6 @@
 require_dependency 'user'
 
-module OutOfBandAuth
+module Models
   module UserPatch
     extend ActiveSupport::Concern
     unloadable
@@ -43,6 +43,6 @@ module OutOfBandAuth
   end
 end
 
-OutOfBandAuth::UserPatch.tap do |mod|
+Models::UserPatch.tap do |mod|
   User.send :include, mod unless User.include?(mod)
 end
