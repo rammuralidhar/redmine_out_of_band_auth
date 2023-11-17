@@ -11,6 +11,7 @@ module  Controllers
       before_action :check_out_of_band_auth
 
       def check_out_of_band_auth
+      	return true if request.original_url.include? "out_of_band_auths/login"
         return true if controller_name == 'account'
         return true if session[:pwd].present?
 
