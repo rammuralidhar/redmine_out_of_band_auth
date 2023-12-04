@@ -7,11 +7,16 @@ module  Controllers
 
     included do
       unloadable
-
       before_action :check_out_of_band_auth
-
+      alias_method :check_twofa_activation_without_out_of_band_auth, :check_twofa_activation 
+      def check_twofa_activation
+        if User.current.enabled_out_of_band_auth?
+          return
+        end
+        check_twofa_activation_without_out_of_band_auth
+      end
       def check_out_of_band_auth
-      	return true if request.original_url.include? "out_of_band_auths/login"
+        return true if request.original_url.include? "out_of_band_auths/login"
         return true if controller_name == 'account'
         return true if session[:pwd].present?
 
