@@ -13,7 +13,11 @@ module Models
     end
 
     def enabled_out_of_band_auth; self[:enabled_out_of_band_auth] || '0'; end
-    def enabled_out_of_band_auth=(value); self[:enabled_out_of_band_auth]=value; end
+    def enabled_out_of_band_auth=(value); 
+      if User.current.admin? 
+        self[:enabled_out_of_band_auth]=value; 
+      end
+    end
 
   end
 end
